@@ -4,7 +4,7 @@
     <main>
       <div class="left-side">
         <span class="title">
-          Testing v 0.0.6
+          Testing v0.0.11
         </span>
         <system-information></system-information>
       </div>
