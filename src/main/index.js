@@ -56,10 +56,19 @@ app.on('activate', () => {
 
 import { autoUpdater } from 'electron-updater';
 
-autoUpdater.on('update-downloaded', () => {
-  autoUpdater.quitAndInstall();
-});
+//-------------------------------------------------------------------
+// Logging
+//
+// THIS SECTION IS NOT REQUIRED
+//
+// This logging setup is not required for auto-updates to work,
+// but it sure makes debugging easier :)
+//-------------------------------------------------------------------
+autoUpdater.logger = log;
+autoUpdater.logger.transports.file.level = 'info';
+log.info('App starting...');
 
 app.on('ready', () => {
-  if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates();
+  if (process.env.NODE_ENV === 'production')
+    autoUpdater.checkForUpdatesAndNotify();
 });
