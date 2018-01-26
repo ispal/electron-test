@@ -1,19 +1,22 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow } from 'electron';
 
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
  */
 if (process.env.NODE_ENV !== 'development') {
-  global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
+  global.__static = require('path')
+    .join(__dirname, '/static')
+    .replace(/\\/g, '\\\\');
 }
 
-let mainWindow
-const winURL = process.env.NODE_ENV === 'development'
-  ? `http://localhost:9080`
-  : `file://${__dirname}/index.html`
+let mainWindow;
+const winURL =
+  process.env.NODE_ENV === 'development'
+    ? `http://localhost:9080`
+    : `file://${__dirname}/index.html`;
 
-function createWindow () {
+function createWindow() {
   /**
    * Initial window options
    */
@@ -21,28 +24,28 @@ function createWindow () {
     height: 563,
     useContentSize: true,
     width: 1000
-  })
+  });
 
-  mainWindow.loadURL(winURL)
+  mainWindow.loadURL(winURL);
 
   mainWindow.on('closed', () => {
-    mainWindow = null
-  })
+    mainWindow = null;
+  });
 }
 
-app.on('ready', createWindow)
+app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    app.quit()
+    app.quit();
   }
-})
+});
 
 app.on('activate', () => {
   if (mainWindow === null) {
-    createWindow()
+    createWindow();
   }
-})
+});
 
 /**
  * Auto Updater
@@ -52,14 +55,12 @@ app.on('activate', () => {
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
  */
 
-/*
-import { autoUpdater } from 'electron-updater'
+import { autoUpdater } from 'electron-updater';
 
 autoUpdater.on('update-downloaded', () => {
-  autoUpdater.quitAndInstall()
-})
+  autoUpdater.quitAndInstall();
+});
 
 app.on('ready', () => {
-  if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
-})
- */
+  if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates();
+});
