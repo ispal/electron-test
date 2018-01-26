@@ -1,6 +1,6 @@
 {
   "name": "electron-test",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "ispal <ispal84@gmail.com>",
   "description": "An electron-vue project",
   "license": "MIT",
@@ -10,8 +10,7 @@
   },
   "main": "./dist/electron/main.js",
   "scripts": {
-    "build":
-      "node .electron-vue/build.js && electron-builder --publish onTagOrDraft",
+    "build": "node .electron-vue/build.js && build --publish onTagOrDraft",
     "build:dir": "node .electron-vue/build.js && electron-builder --dir",
     "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
     "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
