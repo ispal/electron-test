@@ -4,7 +4,7 @@
     <main>
       <div class="left-side">
         <span class="title">
-          Testing v0.0.15
+          Testing {{ appVersion }}
         </span>
         <system-information></system-information>
       </div>
@@ -35,6 +35,11 @@ import SystemInformation from './LandingPage/SystemInformation';
 export default {
   name: 'landing-page',
   components: { SystemInformation },
+  data() {
+    return {
+      appVersion: require('../../../package.json').version
+    };
+  },
   methods: {
     open(link) {
       this.$electron.shell.openExternal(link);
